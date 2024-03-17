@@ -14,10 +14,10 @@ import tempfile
 from util import visualize
 
 # set title
-st.title('Brain MRI tumor detection')
+st.title('МРТ головного мозку виявлення пухлини')
 
 # set header
-st.header('Please upload an image')
+st.header('Будь ласка, завантажте зображення')
 
 # upload file
 file = st.file_uploader('', type=['png', 'jpg', 'jpeg'])
