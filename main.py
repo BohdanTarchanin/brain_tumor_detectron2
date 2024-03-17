@@ -5,6 +5,8 @@ from detectron2 import model_zoo
 from PIL import Image
 import numpy as np
 import requests
+import os
+import time
 import torch
 from io import BytesIO
 import tempfile
