@@ -4,6 +4,8 @@ from detectron2.engine import DefaultPredictor
 from detectron2 import model_zoo
 from PIL import Image
 import numpy as np
+import requests
+from io import BytesIO
 
 from util import visualize
 
