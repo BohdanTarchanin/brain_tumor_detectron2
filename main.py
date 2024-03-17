@@ -28,7 +28,7 @@ gdown.download(url, output)
 # load model
 cfg = get_cfg()
 cfg.merge_from_file(model_zoo.get_config_file('COCO-Detection/retinanet_R_101_FPN_3x.yaml'))
-cfg.MODEL.WEIGHTS = './model/model.pth'
+cfg.MODEL.WEIGHTS = 'model.pth'
 cfg.MODEL.DEVICE = 'cpu'
 
 predictor = DefaultPredictor(cfg)
