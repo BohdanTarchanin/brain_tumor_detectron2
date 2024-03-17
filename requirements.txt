@@ -6,5 +6,5 @@ torchvision
 opencv-python
 matplotlib
 plotly
-opencpn
+skia-python
 git+https://github.com/facebookresearch/detectron2.git
