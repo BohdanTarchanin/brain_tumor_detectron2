@@ -6,4 +6,5 @@ torchvision
 opencv-python
 matplotlib
 plotly
+requests
 git+https://github.com/facebookresearch/detectron2.git
