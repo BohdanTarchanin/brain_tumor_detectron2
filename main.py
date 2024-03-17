@@ -45,4 +45,32 @@ cfg.MODEL.DEVICE = 'cpu'
 
 predictor = DefaultPredictor(cfg)
 
+# load image
+if file:
+    image = Image.open(file).convert('RGB')
 
+    image_array = np.asarray(image)
+
+    # detect objects
+    outputs = predictor(image_array)
+
+    threshold = 0.5
+
+    # Display predictions
+    preds = outputs["instances"].pred_classes.tolist()
+    scores = outputs["instances"].scores.tolist()
+    bboxes = outputs["instances"].pred_boxes
+
+    bboxes_ = []
+    for j, bbox in enumerate(bboxes):
+        bbox = bbox.tolist()
+
+        score = scores[j]
+        pred = preds[j]
+
+        if score > threshold:
+            x1, y1, x2, y2 = [int(i) for i in bbox]
+            bboxes_.append([x1, y1, x2, y2])
+
+    # visualize
+    visualize(image, bboxes_)
