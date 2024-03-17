@@ -18,3 +18,10 @@ st.header('Please upload an image')
 
 # upload file
 file = st.file_uploader('', type=['png', 'jpg', 'jpeg'])
+
+# Replace 'GOOGLE_DRIVE_LINK' with the actual shareable link obtained from Google Drive
+google_drive_link = 'https://drive.google.com/file/d/14TmpFeOoMXSt7VYMtDrL3q98spZSNWo2/view?usp=sharing'
+
+# Download the model.pth file from the Google Drive link
+response = requests.get(google_drive_link)
+model_bytes = BytesIO(response.content)
