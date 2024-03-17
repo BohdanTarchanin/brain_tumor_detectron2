@@ -21,4 +21,6 @@ st.header('Please upload an image')
 # upload file
 file = st.file_uploader('', type=['png', 'jpg', 'jpeg'])
 
-
+url = "https://drive.google.com/uc?id=1XTevverAgBxlZXRzpRdzR9gYM4YvoKgA"
+output = "model.pth"
+gdown.download(url, output)
