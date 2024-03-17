@@ -20,4 +20,21 @@ st.header('Please upload an image')
 # upload file
 file = st.file_uploader('', type=['png', 'jpg', 'jpeg'])
 
+checkFile = "model.pth"
+if os.path.exists(checkFile) == False:
+    print('I miss :', checkFile)
+    msg = st.warning("🚩 Models need to be downloaded... ")
+    try:
+        with st.spinner('Initiating...'):
+            time.sleep(3)
+            url_pth = "https://drive.google.com/file/d/1XTevverAgBxlZXRzpRdzR9gYM4YvoKgA/uc?export=download"
+
+            r_pth = requests.get(url_pth, allow_redirects=True)
+
+            open("model.pth", 'wb').write(r_pth.content)                   
+            del r_pth
+            msg.success("Download was successful ✅")
+    except:
+        msg.error("Error downloading model files...😥")
+
 
