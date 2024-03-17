@@ -25,7 +25,7 @@ def load_model_from_url(url):
     return model_bytes
 
 # Replace 'GOOGLE_DRIVE_LINK' with the actual shareable link obtained from Google Drive
-google_drive_link = 'https://drive.google.com/file/d/14TmpFeOoMXSt7VYMtDrL3q98spZSNWo2/view?usp=sharing'
+google_drive_link = 'https://drive.google.com/uc?id=14TmpFeOoMXSt7VYMtDrL3q98spZSNWo2'
 
 # Load the model.pth file from the Google Drive link
 model_bytes = load_model_from_url(google_drive_link)
