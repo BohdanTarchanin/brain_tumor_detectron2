@@ -65,10 +65,10 @@ def visualize(image, bboxes):
                 yanchor="top",
                 type="buttons",
                 buttons=[
-                    dict(label="Оригінальне зображення",
+                    dict(label="Original",
                          method="relayout",
                          args=["shapes", []]),
-                    dict(label="Розпізнавання",
+                    dict(label="Detections",
                          method="relayout",
                          args=["shapes", shapes])
                      ],
