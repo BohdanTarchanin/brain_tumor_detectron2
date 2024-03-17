@@ -30,8 +30,7 @@ checkFile = ("model.pth")
 
                     r_pth = requests.get(url_pth, allow_redirects=True)
 
-                    open("wandering-sponge-4.pth", 'wb').write(r_pth.content)
-                    open("label_embeddings.npy", 'wb').write(r_npy.content)
+                    open("model.pth", 'wb').write(r_pth.content)                    
                     del r_pth
                     msg.success("Download was successful ✅")
             except:
