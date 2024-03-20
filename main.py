@@ -4,14 +4,21 @@ from detectron2.engine import DefaultPredictor
 from detectron2 import model_zoo
 from PIL import Image
 import numpy as np
-import requests
 import os
-import time
-import gdown
 import torch
 from io import BytesIO
 import tempfile
 from util import visualize
+
+# Function to download model file if it doesn't exist
+def download_model_if_not_exists(url, output):
+    if not os.path.exists(output):
+        st.write("Downloading model file...")
+        with st.spinner('Downloading model file...'):
+            gdown.download(url, output)
+        st.write("Model file downloaded successfully.")
+    else:
+        st.write("Using existing model file.")
 
 # set title
 st.title('МРТ головного мозку виявлення пухлини')
@@ -24,7 +31,7 @@ file = st.file_uploader('', type=['png', 'jpg', 'jpeg'])
 
 url = "https://drive.google.com/uc?id=1XTevverAgBxlZXRzpRdzR9gYM4YvoKgA"
 output = "model.pth"
-gdown.download(url, output)
+download_model_if_not_exists(url, output)
 
 # load model
 cfg = get_cfg()
@@ -63,4 +70,3 @@ if file:
 
     # visualize
     visualize(image, bboxes_)
-
