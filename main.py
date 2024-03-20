@@ -11,35 +11,35 @@ import tempfile
 from util import visualize
 
 # Function to download model file if it doesn't exist
-
-def load_model(url, output):
+def download_model_if_not_exists(url, output):
     if not os.path.exists(output):
-        with st.spinner('Завантаження моделі...'):
+        st.write("Downloading model file...")
+        with st.spinner('Downloading model file...'):
             gdown.download(url, output)
-    return output
+        st.write("Model file downloaded successfully.")
+    else:
+        st.write("Using existing model file.")
 
 # set title
-st.title('Розпізнавання і виявлення патологічних утворень головного мозку')
+st.title('МРТ головного мозку виявлення пухлини')
 
 # set header
-st.write('Ця програма дозволяє завантажувати зображення МРТ для виявлення пухлини мозку')
+st.header('Будь ласка, завантажте зображення')
 
 # upload file
 file = st.file_uploader('', type=['png', 'jpg', 'jpeg'])
 
 url = "https://drive.google.com/uc?id=1XTevverAgBxlZXRzpRdzR9gYM4YvoKgA"
 output = "model.pth"
-output = load_model(url, output)
+download_model_if_not_exists(url, output)
 
 # load model
-def load_detector(output):
-    cfg = get_cfg()
-    cfg.merge_from_file(model_zoo.get_config_file('COCO-Detection/retinanet_R_101_FPN_3x.yaml'))
-    cfg.MODEL.WEIGHTS = output
-    cfg.MODEL.DEVICE = 'cpu'
-    return DefaultPredictor(cfg)
+cfg = get_cfg()
+cfg.merge_from_file(model_zoo.get_config_file('COCO-Detection/retinanet_R_101_FPN_3x.yaml'))
+cfg.MODEL.WEIGHTS = 'model.pth'
+cfg.MODEL.DEVICE = 'cpu'
 
-predictor = load_detector(output)
+predictor = DefaultPredictor(cfg)
 
 # load image
 if file:
