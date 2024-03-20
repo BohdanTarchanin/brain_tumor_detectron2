@@ -8,6 +8,7 @@ import os
 import torch
 from io import BytesIO
 import tempfile
+import gdown
 from util import visualize
 
 # Function to download model file if it doesn't exist
