@@ -14,12 +14,8 @@ from util import visualize
 @st.cache(allow_output_mutation=True)
 def load_model(url, output):
     if not os.path.exists(output):
-        st.write("Downloading model file...")
-        with st.spinner('Downloading model file...'):
+        with st.spinner('Завантаження моделі...'):
             gdown.download(url, output)
-        st.write("Model file downloaded successfully.")
-    else:
-        st.write("Using existing model file.")
     return output
 
 # set title
