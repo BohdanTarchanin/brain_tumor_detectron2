@@ -11,7 +11,7 @@ import tempfile
 from util import visualize
 
 # Function to download model file if it doesn't exist
-@st.cache(allow_output_mutation=True)
+@st.cache_data(allow_output_mutation=True)
 def load_model(url, output):
     if not os.path.exists(output):
         with st.spinner('Завантаження моделі...'):
@@ -32,7 +32,7 @@ output = "model.pth"
 output = load_model(url, output)
 
 # load model
-@st.cache(allow_output_mutation=True)
+@st.cache_data(allow_output_mutation=True)
 def load_detector(output):
     cfg = get_cfg()
     cfg.merge_from_file(model_zoo.get_config_file('COCO-Detection/retinanet_R_101_FPN_3x.yaml'))
