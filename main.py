@@ -1,7 +1,7 @@
 import streamlit as st
-from detectron2.config import get_cfg
-from detectron2.engine import DefaultPredictor
-from detectron2 import model_zoo
+#from detectron2.config import get_cfg
+#from detectron2.engine import DefaultPredictor
+#from detectron2 import model_zoo
 from PIL import Image
 import numpy as np
 import os
@@ -30,7 +30,7 @@ file = st.file_uploader('', type=['png', 'jpg', 'jpeg'])
 url = "https://drive.google.com/uc?id=1XTevverAgBxlZXRzpRdzR9gYM4YvoKgA"
 output = "model.pth"
 download_model_if_not_exists(url, output)
-
+"""
 # load model
 cfg = get_cfg()
 cfg.merge_from_file(model_zoo.get_config_file('COCO-Detection/retinanet_R_101_FPN_3x.yaml'))
@@ -68,3 +68,4 @@ if file:
 
     # visualize
     visualize(image, bboxes_)
+"""
