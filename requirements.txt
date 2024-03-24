@@ -9,4 +9,4 @@ plotly==5.15.0
 requests
 gdown
 kaleido
-#git+https://github.com/facebookresearch/detectron2.git
+git+https://github.com/facebookresearch/detectron2.git
