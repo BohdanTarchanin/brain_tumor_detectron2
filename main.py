@@ -9,7 +9,9 @@ import torch
 from io import BytesIO
 import tempfile
 import gdown
-from util import visualize
+from util import visualize, set_background
+
+set_background('./bg.jpeg')
 
 @st.cache_resource 
 def load_model():
