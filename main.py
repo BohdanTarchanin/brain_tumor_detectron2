@@ -11,6 +11,25 @@ import tempfile
 import gdown
 from util import visualize
 
+@st.cache_resource 
+def load_model():
+    url = "https://drive.google.com/uc?id=1XTevverAgBxlZXRzpRdzR9gYM4YvoKgA"
+    output = "model.pth"
+
+    # Download model file if it doesn't exist
+    if not os.path.exists(output):
+        with st.spinner('Downloading model file...'):
+            gdown.download(url, output)
+    
+    # load model
+    cfg = get_cfg()
+    cfg.merge_from_file(model_zoo.get_config_file('COCO-Detection/retinanet_R_101_FPN_3x.yaml'))
+    cfg.MODEL.WEIGHTS = 'model.pth'
+    cfg.MODEL.DEVICE = 'cpu'
+
+    predictor = DefaultPredictor(cfg)
+    return predictor
+
 # set title
 st.title('Розпізнавання і виявлення патологічних утворень головного мозку')
 
@@ -20,26 +39,12 @@ st.write('Ця програма дозволяє завантажувати зо
 # upload file
 file = st.file_uploader('Upload an image', type=['png', 'jpg', 'jpeg'])
 
-url = "https://drive.google.com/uc?id=1XTevverAgBxlZXRzpRdzR9gYM4YvoKgA"
-output = "model.pth"
-
-# Download model file if it doesn't exist
-if not os.path.exists(output):
-    with st.spinner('Downloading model file...'):
-        gdown.download(url, output)
-
 # load model
-cfg = get_cfg()
-cfg.merge_from_file(model_zoo.get_config_file('COCO-Detection/retinanet_R_101_FPN_3x.yaml'))
-cfg.MODEL.WEIGHTS = 'model.pth'
-cfg.MODEL.DEVICE = 'cpu'
-
-predictor = DefaultPredictor(cfg)
+predictor = load_model()
 
 # load image
 if file:
     image = Image.open(file).convert('RGB')
-
     image_array = np.asarray(image)
 
     # detect objects
