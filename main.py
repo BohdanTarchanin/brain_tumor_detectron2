@@ -74,3 +74,15 @@ if file:
 
     # visualize
     visualize(image, bboxes_)
+    
+    # After detection, visualize the image with bounding boxes
+    annotated_image = visualize(image, bboxes_)
+
+    # Save annotated image temporarily
+    with tempfile.NamedTemporaryFile(delete=False, suffix='.png') as temp_file:
+        annotated_image.save(temp_file.name)
+
+    # Provide download link for the annotated image
+    st.markdown(f'[Download Annotated Image]({temp_file.name})')
+
+
