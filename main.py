@@ -11,13 +11,6 @@ import tempfile
 import gdown
 from util import visualize
 
-# Function to download model file if it doesn't exist
-def download_model_if_not_exists(url, output):
-    if not os.path.exists(output):
-        with st.spinner('Downloading model file...'):
-            gdown.download(url, output)
-    return output
-
 # set title
 st.title('Розпізнавання і виявлення патологічних утворень головного мозку')
 
@@ -25,8 +18,12 @@ st.title('Розпізнавання і виявлення патологічн�
 st.write('Ця програма дозволяє завантажувати зображення МРТ для виявлення пухлини мозку')
 
 # upload file
-file = st.file_uploader('Upload an image', type=['png', 'jpg', 'jpeg'])
+file = st.file_uploader('', type=['png', 'jpg', 'jpeg'])
 
 url = "https://drive.google.com/uc?id=1XTevverAgBxlZXRzpRdzR9gYM4YvoKgA"
 output = "model.pth"
-download_model_if_not_exists(url, output)
+
+# Download model file if it doesn't exist
+if not os.path.exists(output):
+    with st.spinner('Downloading model file...'):
+        gdown.download(url, output)
