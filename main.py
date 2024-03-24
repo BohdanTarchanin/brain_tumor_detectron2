@@ -18,7 +18,7 @@ st.title('Розпізнавання і виявлення патологічн�
 st.write('Ця програма дозволяє завантажувати зображення МРТ для виявлення пухлини мозку')
 
 # upload file
-file = st.file_uploader('', type=['png', 'jpg', 'jpeg'])
+file = st.file_uploader('Upload an image', type=['png', 'jpg', 'jpeg'])
 
 url = "https://drive.google.com/uc?id=1XTevverAgBxlZXRzpRdzR9gYM4YvoKgA"
 output = "model.pth"
