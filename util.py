@@ -1,9 +1,8 @@
 import base64
-from io import BytesIO
-import tempfile
+
 import plotly.graph_objects as go
 import streamlit as st
-from PIL import Image
+
 
 def set_background(image_file):
     """
@@ -28,16 +27,15 @@ def set_background(image_file):
     """
     st.markdown(style, unsafe_allow_html=True)
 
+
 def visualize(image, bboxes):
     """
-    Visualizes the image with bounding boxes and returns the annotated image as a PIL Image object.
+    Visualizes the image with bounding boxes using Plotly.
 
     Args:
         image: The input image.
         bboxes (list): A list of bounding boxes in the format [x1, y1, x2, y2].
 
-    Returns:
-        annotated_image (PIL.Image): Annotated image with bounding boxes.
     """
     # Get the width and height of the image
     width, height = image.size
@@ -102,14 +100,4 @@ def visualize(image, bboxes):
         ]
     )
 
-    # Render the plotly chart to a BytesIO object
-    img_bytes = BytesIO()
-    fig.write_image(img_bytes, format='png')
-    img_bytes.seek(0)
-
-    # Convert BytesIO object to PIL Image
-    annotated_image = Image.open(img_bytes)
-
-    return annotated_image
-
-
+    st.plotly_chart(fig)
