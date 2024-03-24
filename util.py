@@ -3,6 +3,7 @@ from io import BytesIO
 import tempfile
 import plotly.graph_objects as go
 import streamlit as st
+from PIL import Image
 
 def set_background(image_file):
     """
