@@ -32,5 +32,14 @@ def load_model():
     predictor = DefaultPredictor(cfg)
     return predictor
 
+# set title
+st.title('Розпізнавання і виявлення патологічних утворень головного мозку')
 
+# set header
+st.write('Ця програма дозволяє завантажувати зображення МРТ для виявлення паталогічних утворень головного мозку')
+
+st.info('👇 Завантажуйте зображення МРТ')
+
+# upload file
+file = st.file_uploader('Upload an image', type=['png', 'jpg', 'jpeg'])
 
