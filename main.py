@@ -15,7 +15,7 @@ set_background('./bg.jpg')
 
 @st.cache_resource 
 def load_model():
-    url = "https://drive.google.com/uc?id=1T9MVlOqeOtrFLX1vOv1U-kWHoPy7J5aX"
+    url = "https://drive.google.com/uc?id=1XTevverAgBxlZXRzpRdzR9gYM4YvoKgA"
     output = "model.pt"
 
     # Download model file if it doesn't exist
